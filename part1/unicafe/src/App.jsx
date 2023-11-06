@@ -15,6 +15,17 @@ const handleFeedbackClick = (type) => {
   setFeedback({ ...feedback, [type]: feedback[type] + 1})
 }
 
+const {good, neutral, bad} = feedback;
+const total = good + neutral + bad;
+
+const calculateAverage = () => {
+  return ((good * 1) + (neutral * 0) + (bad * -1)) / total; 
+}
+
+const positivePercentage = () => {
+  return `${(good / total) * 100} %`;
+}
+
   return (
     <>
       <Heading text ="Give feedback"/>
@@ -24,9 +35,12 @@ const handleFeedbackClick = (type) => {
         <Button text="Bad" onClick={() => handleFeedbackClick('bad')}/>
       </div>
       <Heading text ="Statistics"/> 
-      <Statistics reviewType= "Good" review = {feedback.good} />
-      <Statistics reviewType= "Neutral" review = {feedback.neutral} />
-      <Statistics reviewType= "Bad" review = {feedback.bad} />
+      <Statistics reviewType = "Good" review = {good} />
+      <Statistics reviewType = "Neutral" review = {neutral} />
+      <Statistics reviewType = "Bad" review = {bad} />
+      <Statistics reviewType = "Total" review = {total} />
+      <Statistics reviewType = "Average" review = {calculateAverage()} />
+      <Statistics reviewType = "Positive" review = {positivePercentage()} />
     </>
   )
 }
