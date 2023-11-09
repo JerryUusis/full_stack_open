@@ -1,7 +1,32 @@
 import { useState } from 'react'
 import Heading from './Title'
 import Button from './Button'
-import Statistics from './Statistics';
+
+
+const StatisticsLine = ({reviewType, review}) => {
+  return (
+      <>
+          <p>{reviewType} {review}</p>
+      </>
+  )
+}
+
+const Statistics = ({good, neutral, bad, total, calculateAverage, positivePercentage}) => {
+  if(total === 0) {
+    return <p>No feedback given</p>
+  }
+  return (
+    <div>
+      <StatisticsLine reviewType = "Good" review = {good} />
+      <StatisticsLine reviewType = "Neutral" review = {neutral} />
+      <StatisticsLine reviewType = "Bad" review = {bad} />
+      <StatisticsLine reviewType = "Total" review = {total} />
+      <StatisticsLine reviewType = "Average" review = {calculateAverage()} />
+      <StatisticsLine reviewType = "Positive" review = {positivePercentage()} />
+    </div>
+  )
+
+}
 
 function App() {
 
@@ -35,13 +60,14 @@ const positivePercentage = () => {
         <Button text="Bad" onClick={() => handleFeedbackClick('bad')}/>
       </div>
       <Heading text ="Statistics"/> 
-      <Statistics reviewType = "Good" review = {good} />
-      <Statistics reviewType = "Neutral" review = {neutral} />
-      <Statistics reviewType = "Bad" review = {bad} />
-      <Statistics reviewType = "Total" review = {total} />
-      <Statistics reviewType = "Average" review = {calculateAverage()} />
-      <Statistics reviewType = "Positive" review = {positivePercentage()} />
-    </>
+      <Statistics 
+      good={good}
+      neutral={neutral}
+      bad={bad}
+      total={total}
+      calculateAverage={calculateAverage}
+      positivePercentage={positivePercentage} />
+      </>
   )
 }
 
