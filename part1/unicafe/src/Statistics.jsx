@@ -1,7 +1,7 @@
-const Statistics = (props) => {
+const Statistics = ({reviewType, review}) => {
     return (
         <div>
-            <p>{props.reviewType} {props.review}</p>
+            <p>{reviewType} {review}</p>
         </div>
     )
 }
