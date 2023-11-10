@@ -20,4 +20,10 @@
 - 1.8: unicafe step3 ✅ 
 - 1.9: unicafe step4 ✅ 
 - 1.10: unicafe step5 ✅ 
-- 1.11: unicafe step6 ✅ 
+- 1.11: unicafe step6 ✅
+
+### Anekdootit
+
+- 1.12*: anekdootit step1 ✅
+- 1.13*: anekdootit step2 ✅
+- 1.14*: anekdootit step3 ✅
