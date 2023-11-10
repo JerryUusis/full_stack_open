@@ -8,6 +8,14 @@ const Button = ({ text, handleClick }) => {
   )
 }
 
+const Votes = ({ votes }) => {
+  return (
+    <div>
+      <p>Has {votes} votes</p>
+    </div>
+  )
+}
+
 function App() {
 
   const anecdotes = ['If it hurts, do it more often.',
@@ -22,6 +30,8 @@ function App() {
 
   const [selected, setSelected] = useState(0);
 
+  const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
+
   const randomNumber = (number) => {
     return Math.floor(Math.random() * number)
   }
@@ -30,11 +40,22 @@ function App() {
     setSelected(randomNumber(anecdotes.length))
   }
 
+  const giveVote = (index) => {
+    setPoints((previousState) => {
+      const copy = [...previousState];
+      copy[index] += 1
+      return copy;
+    }
+    )
+  }
+
   return (
 
     <div>
       {anecdotes[selected]}
+      <Votes votes={points[selected]} />
       <Button text="Next anecdote" handleClick={() => generateAnecdote()} />
+      <Button text="vote" handleClick={() => giveVote(selected)} />
     </div>
   )
 }
