@@ -16,6 +16,14 @@ const Votes = ({ votes }) => {
   )
 }
 
+const Heading = ({ text }) => {
+  return (
+    <>
+      <h2>{text}</h2>
+    </>
+  )
+}
+
 function App() {
 
   const anecdotes = ['If it hurts, do it more often.',
@@ -52,10 +60,14 @@ function App() {
   return (
 
     <div>
+      <Heading text="Anecdote of the day" />
       {anecdotes[selected]}
       <Votes votes={points[selected]} />
       <Button text="Next anecdote" handleClick={() => generateAnecdote()} />
       <Button text="vote" handleClick={() => giveVote(selected)} />
+      <Heading text="Anecdote with most votes" />
+      {anecdotes[points.indexOf(Math.max(...points))]}
+      <Votes votes={Math.max(...points)} />
     </div>
   )
 }
