@@ -27,3 +27,8 @@
 - 1.12*: anekdootit step1 ✅
 - 1.13*: anekdootit step2 ✅
 - 1.14*: anekdootit step3 ✅
+
+## Part 2
+
+### Kurssitiedot
+- 2.1: kurssitiedot step6 ✅
