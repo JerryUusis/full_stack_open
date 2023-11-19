@@ -32,3 +32,4 @@
 
 ### Kurssitiedot
 - 2.1: kurssitiedot step6 ✅
+- 2.2: kurssitiedot step7 ✅

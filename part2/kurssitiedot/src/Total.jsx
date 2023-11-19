@@ -1,7 +1,10 @@
-const Total = (props) => {
+const Total = ({ exerciseTotal }) => {
+
+    const countTotal = exerciseTotal.reduce((accumulator, anonObject) =>
+        accumulator + anonObject.exercises, 0)
     return (
-        <p>Number of exercises {props.exercises1 + props.exercises2 + props.exercises3}</p>
-    )
+        <p>Number of exercises {countTotal} </p>
+    );
 }
 
-export default Total
+export default Total;
