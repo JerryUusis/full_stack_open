@@ -10,13 +10,23 @@ function App() {
     setNewName(event.target.value)
   }
 
+  const checkDuplicateValue = (array, value) => {
+    return array.find((item) => item.name === value)
+  }
+
   const addPerson = (event) => {
-    event.preventDefault()
-    const newPersonObject = {
-      name: newName
+
+    if (checkDuplicateValue(persons, newName) !== undefined) {
+      event.preventDefault();
+      return window.alert(`${newName} is already on added on the phonebook`)
+    } else {
+      event.preventDefault()
+      const newPersonObject = {
+        name: newName
+      }
+      setPersons(persons.concat(newPersonObject))
+      setNewName("")
     }
-    setPersons(persons.concat(newPersonObject))
-    setNewName("")
   }
 
   return (
