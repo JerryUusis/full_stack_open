@@ -43,3 +43,4 @@
 - 2.8: puhelinluettelo step3 ✅
 - 2.9*: puhelinluettelo step4 ✅
 - 2.10: puhelinluettelo step5 ✅
+- 2.11: puhelinluettelo step6 ✅
