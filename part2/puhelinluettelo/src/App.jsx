@@ -16,6 +16,8 @@ function App() {
     }
   }
 
+  // Make sure you have a dev server running with JSON server
+  // Open a terminal window and run "npm run server"
   useEffect(() => {
     console.log('effect')
     axios
