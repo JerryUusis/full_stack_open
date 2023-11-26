@@ -2,12 +2,16 @@ import { useState } from 'react'
 
 function App() {
   const [persons, setPersons] = useState([
-    { name: 'Bobo Dankovich' }
+    { name: 'Bobo Dankovich',
+      number: "0700 123 123" }
   ])
   const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState("");
 
-  const handleInput = (event) => {
-    setNewName(event.target.value)
+  const handleInput = (setUseState) => {
+    return (event) => {
+      setUseState(event.target.value)
+    }
   }
 
   const checkDuplicateValue = (array, value) => {
@@ -22,10 +26,12 @@ function App() {
     } else {
       event.preventDefault()
       const newPersonObject = {
-        name: newName
+        name: newName,
+        number: newNumber
       }
       setPersons(persons.concat(newPersonObject))
       setNewName("")
+      setNewNumber("")
     }
   }
 
@@ -35,8 +41,13 @@ function App() {
       <form onSubmit={addPerson}>
         <div>
           name: <input
-            onChange={handleInput}
+            onChange={handleInput(setNewName)}
             value={newName} />
+        </div>
+        <div>number:
+          <input
+            onChange={handleInput(setNewNumber)}
+            value={newNumber} />
         </div>
         <div>
           <button type='submit' >add</button>
@@ -45,7 +56,7 @@ function App() {
       <h2>Numbers</h2>
       <ul>
         {persons.map((person) => {
-          return <li key={person.name}>{person.name}</li>
+          return <li key={person.name}>{person.name} {person.number}</li>
         })}
       </ul>
     </div>
