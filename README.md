@@ -36,3 +36,10 @@
 - 2.3*: kurssitiedot step8 ✅
 - 2.4: kurssitiedot step9 ✅
 - 2.5: erillinen moduuli ✅
+
+### Puhelinluettelo
+- 2.6: puhelinluettelo step1 ✅
+- 2.7: puhelinluettelo step2 ✅
+- 2.8: puhelinluettelo step3 ✅
+- 2.9*: puhelinluettelo step4 ✅
+- 2.10: puhelinluettelo step5 ✅
