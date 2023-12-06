@@ -38,21 +38,27 @@ function App() {
     if (checkDuplicateValue(persons, newName) !== undefined) {
       event.preventDefault();
       return window.alert(`${newName} is already on added on the phonebook`)
-    } else {
+    }
+    else {
       event.preventDefault()
       const newPersonObject = {
         name: newName,
-        number: newNumber
+        number: newNumber,
+        id: persons.length + 1
       }
-      setPersons(persons.concat(newPersonObject))
-      setNewName("")
-      setNewNumber("")
+      axios
+        .post('http://localhost:3001/persons', newPersonObject)
+        .then(response => {
+          console.log(response)
+          setPersons(persons.concat(response.data))
+          setNewName("")
+          setNewNumber("")
+        })
     }
   }
 
   return (
     <div>
-
       <h2>Phonebook</h2>
       <Filter
         handleInput={handleInput}
