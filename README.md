@@ -48,3 +48,4 @@
 - 2.13: puhelinluettelo step8 ✅
 - 2.14: puhelinluettelo step9 ✅
 - 2.15*: puhelinluettelo step10 ✅
+- 2.16: puhelinluettelo step11 ✅
