@@ -11,6 +11,7 @@ function App() {
   const [newNumber, setNewNumber] = useState('');
   const [filterPhonebook, setFilterPhonebook] = useState('');
   const [errorMessage, setErrorMesage] = useState(null)
+  const [notificationType, setNotificationType] = useState('')
 
   const handleInput = (setUseState) => {
     return (event) => {
@@ -51,7 +52,15 @@ function App() {
           .then(response => {
             const updatedPersons = persons.map(person => (person.id !== updatedPerson.id ? person : response));
             setPersons(updatedPersons);
+            setNotificationType('success')
             setErrorMesage(`Updated ${updatedPerson.name} phone number`)
+            setTimeout(()=> {
+              setErrorMesage(null)
+            }, 3000)
+          })
+          .catch(error => {
+            setNotificationType('error')
+            setErrorMesage(`${updatedPerson.name} was already removed from the server`)
             setTimeout(()=> {
               setErrorMesage(null)
             }, 3000)
@@ -72,6 +81,7 @@ function App() {
           setPersons(persons.concat(response.data))
           setNewName("")
           setNewNumber("")
+          setNotificationType('success')
           setErrorMesage(`Added ${newPersonObject.name}`)
           setTimeout(()=> {
             setErrorMesage(null)
@@ -85,6 +95,7 @@ function App() {
       setPersons(persons.filter(p => p.name !== person.name))
       personService
         .remove(person)
+        setNotificationType('success')
         setErrorMesage(`Removed ${person.name}`)
         setTimeout(()=> {
           setErrorMesage(null)
@@ -99,7 +110,9 @@ function App() {
         handleInput={handleInput}
         setFilterPhonebook={setFilterPhonebook}
       />
-      <Notification errorMessage={errorMessage} />
+      <Notification 
+        errorMessage={errorMessage}
+        notificationType={notificationType} />
       <Form
         addPerson={addPerson}
         handleInput={handleInput}
