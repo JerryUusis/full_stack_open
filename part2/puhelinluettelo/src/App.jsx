@@ -29,18 +29,31 @@ function App() {
   }, [])
   console.log('render', persons.length, 'persons')
 
+  // Returns undefined if a person is not found
   const checkDuplicateValue = (array, value) => {
     return array.find((item) => item.name === value)
   }
 
+  // Adds a person if it doesn't exist. If it exists ask to update person's number
   const addPerson = (event) => {
+    event.preventDefault();
 
-    if (checkDuplicateValue(persons, newName) !== undefined) {
-      event.preventDefault();
-      return window.alert(`${newName} is already on added on the phonebook`)
+    const existingPerson = checkDuplicateValue(persons, newName)
+
+    if (existingPerson) {
+      if (window.confirm(`${newName} is already on added on the phonebook. Do you want to update phone number?`)) {
+        const updatedPerson = { ...existingPerson, number: newNumber }
+
+        personService
+          .update(existingPerson.id, updatedPerson)
+          .then(response => {
+            const updatedPersons = persons.map(person => (person.id !== updatedPerson.id ? person : response));
+            setPersons(updatedPersons);
+          })
+      }
     }
+
     else {
-      event.preventDefault()
       const newPersonObject = {
         name: newName,
         number: newNumber,
@@ -60,10 +73,8 @@ function App() {
   const removePerson = (person) => {
     if (window.confirm(`Do you want to remove ${person.name}`)) {
       setPersons(persons.filter(p => p.name !== person.name))
-      personService.remove(person)
-        .then(response => {
-          console.log(`${person.name} removed`)
-        })
+      personService
+        .remove(person)
     }
   }
 
