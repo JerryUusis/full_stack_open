@@ -58,7 +58,7 @@ function App() {
               setErrorMesage(null)
             }, 3000)
           })
-          .catch(error => {
+          .catch(() => {
             setNotificationType('error')
             setErrorMesage(`${updatedPerson.name} was already removed from the server`)
             setTimeout(()=> {
