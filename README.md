@@ -51,3 +51,4 @@
 - 2.16: puhelinluettelo step11 ✅
 - 2.16: puhelinluettelo step11 ✅
 - 2.17*: puhelinluettelo step12 ✅
+- 2.18*: maiden tiedot, step1 ✅
